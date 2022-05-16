@@ -20,4 +20,4 @@ You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/
 
 
 1. vite.config.ts 如何 __dirname 找不到解决方案
-   1. npm install @types/node -D
+   1. npm install @types/node -D# vue3-admim
