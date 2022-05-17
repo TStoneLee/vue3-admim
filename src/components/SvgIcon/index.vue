@@ -31,7 +31,7 @@
   const svgClass = computed(() => {
     return props.className ? `svg-icon ${props.className}` : 'svg-icon'
   })
-  console.log(svgClass)
+  // console.log(svgClass)
   // 如果iconClass是带协议的图标链接 则通过style css属性方式渲染
   const styleExternalIcon = computed(() => ({
     mask: `url(${props.iconClass}) no-repeat 50% 50%`,

@@ -10,10 +10,28 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType, toRefs } from 'vue'
+import { RouteRecordRaw } from 'vue-router'
 
 export default defineComponent({
-  name: 'SidebarItem'
+  name: 'SidebarItem',
+  props: {
+    item: {
+      type: Object as PropType<RouteRecordRaw>,
+      required: true
+    },
+    basePath: {
+      type: String,
+      required: true
+    }
+  },
+  setup (props) {
+    const { item } = toRefs(props)
+    console.log(item)
+    return {
+
+    }
+  }
 })
 </script>
 
