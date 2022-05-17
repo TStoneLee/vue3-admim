@@ -4,7 +4,6 @@
     <el-menu
       class="sidebar-container-menu"
       mode="vertical"
-      router
       :default-active="activeMenu"
       :background-color="scssVariables.menuBg"
       :text-color="scssVariables.menuText"
@@ -46,7 +45,7 @@
       // scss变量
       const scssVariables = computed(() => variables)
       // 菜单展开收起状态 后面会放store里
-      const isCollapse = ref(true)
+      const isCollapse = ref(false)
       // 渲染路由
       const menuRoutes = computed(() => routes)
 
