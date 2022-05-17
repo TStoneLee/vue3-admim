@@ -9,10 +9,12 @@ import 'normalize.css/normalize.css'
 import '@/styles/index.scss'
 
 import initSvgIcon from '@/icons/index'
+import installElementPlus from '@/plugins/element'
 const app = createApp(App)
 
 app.use(store)
   .use(router)
   .use(initSvgIcon)
+  .use(installElementPlus)
   .use(ElementPlus)
   .mount('#app')

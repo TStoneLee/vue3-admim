@@ -9,7 +9,9 @@
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml"
   },
   "dependencies": {
+    "@vue/runtime-core": "^3.2.33",
     "axios": "^0.27.2",
+    "dayjs": "^1.11.2",
     "element-plus": "^2.2.0",
     "fast-glob": "^3.2.11",
     "normalize.css": "^8.0.1",
