@@ -1,14 +1,15 @@
 <template>
   <div v-if="!item.meta || !item.meta.hidden" class="sidebar-item-container">
     <!-- 一个路由下只有一个子路由的时候 只渲染这个子路由 -->
-    <template v-if="theOnlyOneChildRoute && (!theOnlyOneChildRoute.children || theOnlyOneChildRoute.noShowingChildren)">
+    <template v-if="isRenderSingleRoute && theOnlyOneChildRoute">
       <sidebar-item-link
         v-if="theOnlyOneChildRoute.meta "
         :to="resolvePath(theOnlyOneChildRoute.path)"
       >
         <el-menu-item :index="resolvePath(theOnlyOneChildRoute.path)">
+          <i v-if="icon && icon.includes('el-icon')" :class="icon"></i>
           <svg-icon
-            v-if="icon"
+            v-else-if="icon"
             class="menu-icon"
             :icon-class="icon"
           ></svg-icon>
@@ -72,7 +73,7 @@ export default defineComponent({
   },
   setup (props) {
     const { item } = toRefs(props)
-    console.log(item)
+    console.log('item--->', item.value)
     // 渲染菜单主要先看子路由
     // 比如我们的路由 一级路由一般都是layout组件 二级路由才是我们考虑要渲染成菜单的
 
@@ -104,23 +105,29 @@ export default defineComponent({
       return {
         ...props.item,
         path: '',
-        noShowingChildren: true // 无可渲染chiildren
+        // noShowingChildren: true // 无可渲染chiildren
       }
     })
     const icon = computed(() => {
-      return theOnlyOneChildRoute.value?.meta?.icon || props?.item?.meta?.icon
+      return (theOnlyOneChildRoute.value?.meta?.icon || props?.item?.meta?.icon) as string
     })
-
+    // 是否有可渲染子路由
+    const noShowingChildren = computed(() => showingChildNumber.value === 0)
     const resolvePath = (childPath: string) => {
       if (isExternal(childPath)) {
         return childPath
       }
       return path.resolve(props.basePath, childPath)
     }
+    const alwaysShowRootMenu = computed(() => props.item?.meta?.alwaysShow)
+    // 是否只有一条可渲染路由
+    const isRenderSingleRoute = computed(() => !alwaysShowRootMenu.value && (!theOnlyOneChildRoute.value?.children || noShowingChildren.value))
+    
     return {      
       theOnlyOneChildRoute,
       icon,
-      resolvePath
+      resolvePath,
+      isRenderSingleRoute
     }
   }
 })

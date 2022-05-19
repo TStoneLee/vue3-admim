@@ -9,7 +9,8 @@ const constantRoutes: Array<RouteRecordRaw> = [{
     name: 'Dashboard',
     component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
     meta: {
-      title: 'Dashboard'
+      title: 'Dashboard',
+      icon: 'el-icon-platform-eleme'
     }
   }]
 }]
@@ -50,7 +51,8 @@ const asyncRoutes: Array<RouteRecordRaw> = [
     redirect: '/system/user',
     meta: {
       title: 'System',
-      icon: 'lock'
+      icon: 'lock',
+      alwaysShow: true
     },
     children: [
       {
@@ -60,7 +62,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: 'Menu Management',
           icon: 'list',
-          hidden: false
+          hidden: true
         }
       },
       {
@@ -69,7 +71,8 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "role" */'@/views/system/role.vue'),
         meta: {
           title: 'Role Management',
-          icon: 'list'
+          icon: 'list',
+          hidden: true
         }
       },
       {

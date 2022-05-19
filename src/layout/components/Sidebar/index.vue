@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h6 @click="isCollapse=!isCollapse" style="cursor: pointer;">侧边测试</h6>
+    <!-- <h6 @click="isCollapse=!isCollapse" style="cursor: pointer;">侧边测试</h6> -->
     <el-menu
       class="sidebar-container-menu"
       mode="vertical"
@@ -29,6 +29,7 @@
   // el-menu-item封装  
   import SidebarItem from './SidebarItem.vue'
   import { routes } from '@/router'
+  import { useStore } from '@/store/index'
 
   export default defineComponent({
     name: 'Siderbar',
@@ -37,6 +38,7 @@
     },
     setup () {
       const route = useRoute()
+      const store = useStore()
       // 根据路由路径 对应 当前激活的菜单 页面刷新后 激活当前路由匹配的菜单
       const activeMenu = computed(() => {
         const { path } = route
@@ -45,7 +47,8 @@
       // scss变量
       const scssVariables = computed(() => variables)
       // 菜单展开收起状态 后面会放store里
-      const isCollapse = ref(false)
+      // const isCollapse = ref(false)
+      const isCollapse = computed(() => !store.getters.sidebar.opened)
       // 渲染路由
       const menuRoutes = computed(() => routes)
 
