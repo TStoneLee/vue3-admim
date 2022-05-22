@@ -8,7 +8,8 @@
         <div class="navbar">
           <navbar />
         </div>
-        <div class="tags-view">tagsview</div>
+        <!-- <div class="tags-view">tagsview</div> -->
+        <tags-view />
       </div>
       <!-- <div class="app-main">
         <h2>app main</h2>
@@ -23,11 +24,13 @@
   import Sidebar from './components/Sidebar/index.vue'
   import AppMain from '@/components/AppMain.vue'
   import Navbar from '@/components/Navbar.vue'
+  import TagsView from '@/layout/components/TagsView/index.vue'
   export default defineComponent({
     components: {
       Sidebar,
       AppMain,
-      Navbar
+      Navbar,
+      TagsView
     }
   })
 </script>
@@ -41,9 +44,11 @@
       flex: 1;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
       .header {
         background: cyan;
         .navbar {
+          width: 100%;
           height: 50px;
           background: #fff;
         }

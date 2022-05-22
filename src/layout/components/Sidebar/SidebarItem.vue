@@ -73,7 +73,7 @@ export default defineComponent({
   },
   setup (props) {
     const { item } = toRefs(props)
-    console.log('item--->', item.value)
+    // console.log('item--->', item.value)
     // 渲染菜单主要先看子路由
     // 比如我们的路由 一级路由一般都是layout组件 二级路由才是我们考虑要渲染成菜单的
 

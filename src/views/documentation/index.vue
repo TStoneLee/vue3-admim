@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Documentation Page</h1>
+    cache <input type="text">
   </div>
 </template>
 

@@ -18,9 +18,11 @@
     "path-browserify": "^1.0.1",
     "path-to-regexp": "^6.2.0",
     "sass": "^1.51.0",
+    "screenfull": "^6.0.1",
     "vue": "^3.2.25",
     "vue-router": "^4.0.13",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "vuex-persistedstate": "^4.1.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.33",

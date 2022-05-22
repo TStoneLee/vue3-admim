@@ -1,19 +1,42 @@
 import { createRouter,createWebHashHistory, RouteRecordRaw} from 'vue-router'
 import Layout from '@/layout/index.vue'
-const constantRoutes: Array<RouteRecordRaw> = [{
-  path: '/',
-  component: Layout,
-  redirect: '/dashboard',
-  children: [{
-    path: 'dashboard',
-    name: 'Dashboard',
-    component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+
+/**
+ * 实现当前路由刷新
+  解决一下两点问题
+  - vue中通过一个重定向中间页实现当前路由刷新 利用路由router.replace
+  - 实现当前路由刷新 路由不能被keep-alive缓存 目前我们是默认全部缓存 
+ */
+const constantRoutes: Array<RouteRecordRaw> = [
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [{
+      path: 'dashboard',
+      name: 'Dashboard',
+      component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/index.vue'),
+      meta: {
+        title: 'Dashboard',
+        icon: 'el-icon-platform-eleme',
+        affix: true
+      }
+    }]
+  },
+  {
+    path: '/redirect',
+    component: Layout,
     meta: {
-      title: 'Dashboard',
-      icon: 'el-icon-platform-eleme'
-    }
-  }]
-}]
+      hidden: true
+    },
+    children: [
+      {
+        path: '/redirect/:path(.*)',
+        component: () => import('@/views/redirect/index.vue')
+      }
+    ]
+  }
+]
 
 const asyncRoutes: Array<RouteRecordRaw> = [
   {
@@ -27,7 +50,8 @@ const asyncRoutes: Array<RouteRecordRaw> = [
       meta: {
         title: 'Documentation',
         icon: 'documentation',
-        hidden: true
+        // hidden: true
+        noCache: true
       }
     }]
   },
@@ -62,7 +86,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: 'Menu Management',
           icon: 'list',
-          hidden: true
+          // hidden: true
         }
       },
       {
@@ -72,7 +96,7 @@ const asyncRoutes: Array<RouteRecordRaw> = [
         meta: {
           title: 'Role Management',
           icon: 'list',
-          hidden: true
+          // hidden: true
         }
       },
       {

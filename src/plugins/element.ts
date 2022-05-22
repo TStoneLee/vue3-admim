@@ -8,15 +8,24 @@ import {
   ElMenuItem,
   ElSubMenu,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElTooltip,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+  ElScrollbar
 } from 'element-plus'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import 'dayjs/locale/zh-cn' 
 
+
 export type Size = 'default' | 'medium' | 'small' | 'mini'
-export default (app: App) => {
+export interface ElementOptions {
+  size: Size
+}
+export default (app: App, options: ElementOptions) => {
   // app.component()
   app.use(ElementPlus, {
     locale: zhCn
@@ -32,7 +41,11 @@ export default (app: App) => {
     ElMenuItem,
     ElSubMenu,
     ElBreadcrumb,
-    ElBreadcrumbItem
+    ElBreadcrumbItem,
+    ElTooltip,
+    ElDropdown,
+    ElDropdownItem,
+    ElDropdownMenu
   ]
   components.forEach(component => {
     app.use(component)
@@ -45,7 +58,8 @@ export default (app: App) => {
   app.config.globalProperties.$prompt = ElMessageBox.prompt
   
   app.config.globalProperties.$ELEMENT = {
-    size: 'medium',
+    // size: 'medium',
+    size: options.size,
     // zIndex: 2000 弹框zIndex默认值：2000
   }
 }

@@ -1,8 +1,9 @@
 <template>
   <div class="app-main">
+{{cachedViews}}
     <router-view v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <keep-alive>
+        <keep-alive :include="cachedViews">
           <component :is="Component" :key="key"></component>
         </keep-alive>
       </transition>
@@ -11,15 +12,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { useStore } from '@/store'
 export default defineComponent({
   name: 'AppMain',
   setup () {
     const route = useRoute()
+    const store = useStore()
     const key = computed(() => route.path)
+    // 缓存路由集合 暂时先是空数组
+    const cachedViews = computed(() => store.state.tagsView.cachedViews)
     return {
-      key
+      key,
+      cachedViews
     }
   }
 })

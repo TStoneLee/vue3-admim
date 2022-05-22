@@ -4,6 +4,7 @@
     <svg-icon icon-class="bug"></svg-icon>
     <svg-icon icon-class="404" class-name="custom-class" @click="sayHi"></svg-icon>
     缓存测试：<input type="text" />
+    <!-- <el-button type="primary">size改变</el-button> -->
   </div>
 </template>
 
